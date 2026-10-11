@@ -1,0 +1,6 @@
+# Robots.txt for Google Search and web crawlers
+User-agent: *
+Allow: /
+
+# Google Search Sitemap
+Sitemap: https://aiki-kaniv-cinematic-slow-motion-dojo.ai.studio/sitemap.xml

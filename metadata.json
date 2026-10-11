@@ -1,0 +1,6 @@
+{
+  "name": "Aiki Kaniv - Cinematic Slow-Motion Dojo",
+  "description": "A cinematic, slow-motion study of dynamic aikido training in a traditional dojo in Kaniv, showcasing fluid movements, precise throws, and deep concentration under warm lighting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
