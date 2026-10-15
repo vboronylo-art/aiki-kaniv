@@ -86,6 +86,11 @@ summary::after{content:"+";color:var(--gold);font-size:1.5rem;line-height:1}
 details[open] summary::after{content:"\2212"}
 details p{color:var(--ash);margin-top:12px}
 
+
+.policy h2{font-size:clamp(1.6rem,3.6vw,2.2rem)}
+.policy h3{font-size:1.2rem;margin:22px 0 6px;color:var(--gold-hi)}
+.policy p{color:var(--ash);margin-bottom:10px}
+.policy a{color:var(--gold-hi)}
 footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--ash);font-size:.88rem}
 footer .links{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
 footer a{text-decoration:none;color:var(--bone)}
@@ -197,7 +202,7 @@ footer p{max-width:80ch}
     </details>
     <details>
       <summary>Can I get a refund?</summary>
-      <p>[Add your refund policy here, for example: refund within 14 days if the program is not for you.]</p>
+      <p>Yes. If it is not right for you, email us within 14 days of purchase for a full refund. See the <a href="#refund" style="color:var(--gold-hi)">refund policy</a> for details.</p>
     </details>
     <details>
       <summary>Is this medical advice?</summary>
@@ -206,12 +211,39 @@ footer p{max-width:80ch}
   </div>
 </section>
 
+<!-- POLICIES -->
+<section class="policy" id="refund">
+  <div class="wrap">
+    <h2>Refund policy</h2>
+    <p>If AURA SOMA — Week 1: Spine Decompression is not right for you, email us within 14 days of your purchase and we will refund you in full. No questions asked.</p>
+    <p>This is a digital download, so refunds are not available after 14 days. Payments and refunds are processed by our payment provider, Lemon Squeezy, and the refund returns to your original payment method.</p>
+    <p>To request a refund, write to <a href="mailto:vboronylo@gmail.com">vboronylo@gmail.com</a> and include the email address you used at checkout.</p>
+  </div>
+</section>
+
+<section class="policy" id="privacy">
+  <div class="wrap">
+    <h2>Privacy policy</h2>
+    <p>Last updated: October 15, 2026.</p>
+    <h3>What this website collects</h3>
+    <p>This website does not have accounts or forms and does not collect your personal information itself. We do not sell your data.</p>
+    <h3>When you buy</h3>
+    <p>Checkout is handled by Lemon Squeezy, which acts as the seller of record. It collects your name, email, country and payment details to process your order, and shows its own privacy policy at checkout. We receive only the order information needed to deliver your download and provide support, such as your email address.</p>
+    <h3>Third-party services</h3>
+    <p>This page loads fonts from Google Fonts, which may receive your IP address when the page opens. The videos on this page are hosted on this website.</p>
+    <h3>Your rights</h3>
+    <p>You can ask us to access or delete the order information we hold about you by writing to <a href="mailto:vboronylo@gmail.com">vboronylo@gmail.com</a>.</p>
+    <h3>Children</h3>
+    <p>This website is not directed to children under 13.</p>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="links">
-      <a href="#">Refund policy</a>
-      <a href="#">Privacy policy</a>
-      <a href="mailto:YOUR-EMAIL@example.com">Contact</a>
+      <a href="#refund">Refund policy</a>
+      <a href="#privacy">Privacy policy</a>
+      <a href="mailto:vboronylo@gmail.com">Contact</a>
     </div>
     <p>AURA SOMA | International Somatics. Not medical advice. Consult a qualified professional if you have pain or injury.</p>
   </div>
