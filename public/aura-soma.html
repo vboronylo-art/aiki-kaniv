@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AURA SOMA | 30-Day Somatic Energy Reset Challenge</title>
+<meta name="description" content="Quiet discipline for broken posture. 30 days. 3 minutes a day. $29.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070707; --coal:#121110; --smoke:#1d1b19; --line:#3a342a;
+  --gold:#c9a24b; --gold-hi:#e6c778; --bone:#f3efe6; --ash:#a8a196;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--bone);font-family:var(--sans);font-size:17px;line-height:1.65;
+  background-image:radial-gradient(900px 600px at 78% -5%,rgba(201,162,75,.16),transparent 60%)}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:.005em}
+h1{font-size:clamp(2.6rem,7vw,4.9rem)}
+h2{font-size:clamp(1.9rem,4.4vw,2.9rem);margin-bottom:18px}
+h3{font-size:1.35rem}
+p{max-width:62ch}
+
+/* top bar */
+.bar{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--serif);font-size:1.45rem;letter-spacing:.18em;color:var(--gold-hi);text-decoration:none}
+.bar a.mini{font-size:.9rem;color:var(--ash);text-decoration:none}
+.bar a.mini:hover{color:var(--bone)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;padding:72px 0 88px}
+.hero p.lead{font-size:1.2rem;color:var(--ash);margin:22px 0 34px}
+.btn{display:inline-block;background:var(--gold);color:#120e05;font-weight:600;text-decoration:none;
+  padding:17px 34px;border:1px solid var(--gold);border-radius:2px;font-size:1.02rem;transition:background .2s,color .2s}
+.btn:hover{background:var(--gold-hi)}
+.btn:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--gold-hi)}
+.btn.ghost:hover{background:var(--gold);color:#120e05}
+.fine{font-size:.88rem;color:var(--ash);margin-top:16px}
+
+/* video slots (9:16) */
+.slot{position:relative;aspect-ratio:9/16;width:100%;max-width:340px;margin:0 auto;border:1px solid var(--gold);
+  background:linear-gradient(160deg,var(--smoke),var(--ink));display:grid;place-items:center;text-align:center;
+  padding:24px;color:var(--ash);font-size:.92rem;box-shadow:0 30px 80px rgba(0,0,0,.65)}
+.slot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.slot b{display:block;color:var(--gold-hi);font-family:var(--serif);font-size:1.3rem;font-weight:600;margin-bottom:6px}
+
+section{padding:84px 0;border-top:1px solid var(--line)}
+
+/* free day */
+.free{display:grid;grid-template-columns:.7fr 1.3fr;gap:56px;align-items:center}
+.free p{color:var(--ash);margin-bottom:26px}
+
+/* what's inside */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:34px 0 54px;border:1px solid var(--line)}
+.facts div{padding:28px 24px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts strong{display:block;font-family:var(--serif);font-size:2.4rem;color:var(--gold-hi);font-weight:600;line-height:1}
+.facts span{color:var(--ash);font-size:.95rem}
+ol.week{list-style:none;counter-reset:d;border-top:1px solid var(--line)}
+ol.week li{counter-increment:d;display:grid;grid-template-columns:70px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid var(--line)}
+ol.week li::before{content:"Day " counter(d);color:var(--gold);font-family:var(--serif);font-size:1.15rem;font-weight:600}
+ol.week li b{font-weight:600;color:var(--bone)}
+ol.week li span{display:block;color:var(--ash);font-size:.95rem}
+.more{margin-top:20px;color:var(--ash)}
+
+/* buy */
+.buy{text-align:center;background:linear-gradient(180deg,var(--coal),var(--ink))}
+.buy p{margin:0 auto 10px;color:var(--ash)}
+.price{font-family:var(--serif);font-size:clamp(4.2rem,12vw,7rem);color:var(--gold-hi);font-weight:700;line-height:1;margin:26px 0 8px}
+.price small{font-size:1rem;font-family:var(--sans);color:var(--ash);font-weight:400;display:block;margin-top:10px}
+.buy .btn{margin-top:26px}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:20px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;font-family:var(--serif);font-size:1.3rem;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold);font-size:1.5rem;line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{color:var(--ash);margin-top:12px}
+
+footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--ash);font-size:.88rem}
+footer .links{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+footer a{text-decoration:none;color:var(--bone)}
+footer a:hover{color:var(--gold-hi)}
+footer p{max-width:80ch}
+
+@media (max-width:820px){
+  .hero,.free{grid-template-columns:1fr;gap:40px}
+  .hero{padding:48px 0 64px}
+  .facts{grid-template-columns:1fr}
+  .facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .facts div:last-child{border-bottom:0}
+  ol.week li{grid-template-columns:1fr;gap:2px}
+  section{padding:60px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="bar">
+    <a class="brand" href="#top">AURA SOMA</a>
+    <a class="mini" href="#faq">Questions</a>
+  </header>
+
+  <!-- 1. HERO -->
+  <div class="hero" id="top">
+    <div>
+      <h1>Your spine is the asset. Protect it.</h1>
+      <p class="lead">The 30-Day Somatic Energy Reset Challenge. Three minutes a day of slow, deliberate movement for people who sit for a living.</p>
+      <a class="btn" data-buy href="#">Start the Challenge, $29</a>
+      <p class="fine">Launch price. Instant access. Works on your phone.</p>
+    </div>
+
+    <!-- HERO VIDEO: replace this block with the video tag below (9:16) -->
+    <div class="slot">
+      <div><b>Hero video</b>9:16, back view, no face.<br>Suggested: Day 4 or Day 5 clip.</div>
+      <!-- <video src="videos/hero.mp4" autoplay muted loop playsinline></video> -->
+    </div>
+  </div>
+</div>
+
+<!-- 2. FREE DAY 1 -->
+<section>
+  <div class="wrap free">
+    <!-- DAY 1 VIDEO -->
+    <div class="slot">
+      <div><b>Day 1: The Hanging Blade</b>Free sample video, 9:16.</div>
+      <!-- <video src="videos/day1.mp4" controls playsinline preload="metadata"></video> -->
+    </div>
+    <div>
+      <h2>Try Day 1 before you pay.</h2>
+      <p>The Hanging Blade lets your body weight lengthen the lower back. No force, no equipment, three minutes. Watch it, do it, and decide for yourself.</p>
+      <a class="btn ghost" data-buy href="#">Get all 30 days, $29</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. WHAT'S INSIDE -->
+<section>
+  <div class="wrap">
+    <h2>What is inside.</h2>
+    <p>Thirty short sessions drawn from aikido, qigong and somatic yoga. Each one fits between meetings.</p>
+    <div class="facts">
+      <div><strong>30</strong><span>days, one session each</span></div>
+      <div><strong>3</strong><span>minutes a day</span></div>
+      <div><strong>0</strong><span>equipment needed</span></div>
+    </div>
+    <h3 style="margin-bottom:14px">Week 1</h3>
+    <ol class="week">
+      <li><div><b>The Hanging Blade</b><span>Let the lower back lengthen under your own weight.</span></div></li>
+      <li><div><b>Axis Rotation</b><span>Rooted spiral that frees the mid-spine and chest.</span></div></li>
+      <li><div><b>Cat-Dragon Flow</b><span>A slow wave through the spine, one vertebra at a time.</span></div></li>
+      <li><div><b>Wall Traction</b><span>Open the upper back and shoulders against the wall.</span></div></li>
+      <li><div><b>Seated Cobra</b><span>Reset your posture at the desk in ninety seconds.</span></div></li>
+      <li><div><b>Sacrum Release</b><span>Release the base of the spine and the hips.</span></div></li>
+      <li><div><b>The Grounded Tree</b><span>Stack the spine in one vertical line and keep it.</span></div></li>
+    </ol>
+    <p class="more">Weeks 2 to 4 build on this foundation. You get the full program on purchase.</p>
+  </div>
+</section>
+
+<!-- 4. PRICE + BUY -->
+<section class="buy">
+  <div class="wrap">
+    <h2>One price. Thirty days.</h2>
+    <p>Full 30-Day Somatic Energy Reset Challenge. Instant digital access after checkout.</p>
+    <div class="price">$29<small>Launch price. Secure checkout.</small></div>
+    <a class="btn" data-buy href="#">Start the Challenge, $29</a>
+  </div>
+</section>
+
+<!-- 5. FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <h2>Questions.</h2>
+    <details>
+      <summary>Do I need any equipment?</summary>
+      <p>No. You need a wall, a chair and a little floor space. Some days use a mat or a towel, but it is optional.</p>
+    </details>
+    <details>
+      <summary>Who is this for?</summary>
+      <p>Anyone who spends the day at a desk and wants to move better. Sessions are slow and gentle, and you set the pace.</p>
+    </details>
+    <details>
+      <summary>How do I get access after paying?</summary>
+      <p>Right after checkout you receive an email with your access link. Open it on your phone or computer and start Day 1.</p>
+    </details>
+    <details>
+      <summary>Can I get a refund?</summary>
+      <p>[Add your refund policy here, for example: refund within 14 days if the program is not for you.]</p>
+    </details>
+    <details>
+      <summary>Is this medical advice?</summary>
+      <p>No. This program is general wellness movement, not medical treatment. If you have pain, an injury or a health condition, talk to a qualified professional first.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="#">Refund policy</a>
+      <a href="#">Privacy policy</a>
+      <a href="mailto:YOUR-EMAIL@example.com">Contact</a>
+    </div>
+    <p>AURA SOMA | International Somatics. Not medical advice. Consult a qualified professional if you have pain or injury.</p>
+  </div>
+</footer>
+
+<script>
+  // PASTE YOUR GUMROAD OR LEMON SQUEEZY CHECKOUT LINK HERE (one place for all buttons)
+  var BUY_URL = "#";
+  document.querySelectorAll("[data-buy]").forEach(function(a){ a.href = BUY_URL; });
+</script>
+</body>
+</html>
