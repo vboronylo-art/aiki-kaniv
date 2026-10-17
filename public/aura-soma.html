@@ -75,7 +75,7 @@ ol.week li span{display:block;color:var(--ash);font-size:.95rem}
 .buy p{margin:0 auto 10px;color:var(--ash)}
 .price{font-family:var(--serif);font-size:clamp(4.2rem,12vw,7rem);color:var(--gold-hi);font-weight:700;line-height:1;margin:26px 0 8px}
 .price small{font-size:1rem;font-family:var(--sans);color:var(--ash);font-weight:400;display:block;margin-top:10px}
-.buy .btn{margin-top:26px}
+.buy .btn{margin-top:0}
 
 /* faq */
 details{border-bottom:1px solid var(--line);padding:20px 0}
@@ -91,6 +91,27 @@ details p{color:var(--ash);margin-top:12px}
 .policy h3{font-size:1.2rem;margin:22px 0 6px;color:var(--gold-hi)}
 .policy p{color:var(--ash);margin-bottom:10px}
 .policy a{color:var(--gold-hi)}
+
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.buy .cta-row{justify-content:center;margin-top:26px}
+button.btn{font-family:inherit;cursor:pointer}
+dialog.modal{margin:auto;width:min(92vw,520px);max-height:92vh;overflow:auto;background:var(--coal);color:var(--bone);
+  border:1px solid var(--gold);border-radius:2px;padding:34px 30px 30px;box-shadow:0 40px 100px rgba(0,0,0,.8)}
+dialog.modal::backdrop{background:rgba(0,0,0,.78)}
+.modal h3{font-size:1.9rem;margin-bottom:6px}
+.modal .sub{color:var(--ash);font-size:.95rem;margin-bottom:18px}
+.modal .x{position:absolute;top:10px;right:14px;background:none;border:0;color:var(--ash);font-size:1.8rem;line-height:1;cursor:pointer}
+.modal .x:hover{color:var(--bone)}
+.addr-label{font-size:.82rem;color:var(--ash);margin-bottom:6px}
+.addr{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1.02rem;word-break:break-all;line-height:1.5;
+  background:var(--ink);border:1px solid var(--line);padding:16px;color:var(--gold-hi);user-select:all}
+.modal .btn{width:100%;text-align:center;margin-top:12px}
+.warn{margin:20px 0 4px;border-left:3px solid var(--gold);background:rgba(201,162,75,.08);padding:14px 16px;font-size:.95rem}
+.warn strong{color:var(--gold-hi)}
+.modal ol{margin:18px 0 0 20px;color:var(--ash);font-size:.97rem}
+.modal ol li{margin-bottom:8px}
+.modal ol b{color:var(--bone);font-weight:600}
+.modal .tiny{font-size:.82rem;color:var(--ash);margin-top:16px}
 footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--ash);font-size:.88rem}
 footer .links{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
 footer a{text-decoration:none;color:var(--bone)}
@@ -122,7 +143,10 @@ footer p{max-width:80ch}
     <div>
       <h1>Your spine is the asset. Protect it.</h1>
       <p class="lead">AURA SOMA — Week 1: Spine Decompression. Seven days, three minutes a day of slow, deliberate movement for people who sit for a living.</p>
-      <a class="btn" data-buy href="#">Get Week 1, $12</a>
+      <div class="cta-row">
+        <a class="btn" data-buy href="#">Get Week 1, $12</a>
+        <button class="btn ghost" type="button" data-crypto>Pay with Crypto (USDT)</button>
+      </div>
       <p class="fine">Instant PDF download. Works on your phone.</p>
     </div>
 
@@ -180,7 +204,10 @@ footer p{max-width:80ch}
     <h2>One price. Seven days.</h2>
     <p>AURA SOMA — Week 1: Spine Decompression. Instant PDF download after checkout.</p>
     <div class="price">$12<small>One-time payment. Secure checkout.</small></div>
-    <a class="btn" data-buy href="#">Get Week 1, $12</a>
+    <div class="cta-row">
+        <a class="btn" data-buy href="#">Get Week 1, $12</a>
+        <button class="btn ghost" type="button" data-crypto>Pay with Crypto (USDT)</button>
+      </div>
   </div>
 </section>
 
@@ -217,6 +244,7 @@ footer p{max-width:80ch}
     <h2>Refund policy</h2>
     <p>If AURA SOMA — Week 1: Spine Decompression is not right for you, email us within 14 days of your purchase and we will refund you in full. No questions asked.</p>
     <p>This is a digital download, so refunds are not available after 14 days. Payments and refunds are processed by our payment provider, Lemon Squeezy, and the refund returns to your original payment method.</p>
+    <p>Crypto payments (USDT): email us within 14 days and we will arrange a refund in USDT to the address you send from, minus the network fee. Transfers sent on the wrong network cannot be recovered.</p>
     <p>To request a refund, write to <a href="mailto:vboronylo@gmail.com">vboronylo@gmail.com</a> and include the email address you used at checkout.</p>
   </div>
 </section>
@@ -229,6 +257,7 @@ footer p{max-width:80ch}
     <p>This website does not have accounts or forms and does not collect your personal information itself. We do not sell your data.</p>
     <h3>When you buy</h3>
     <p>Checkout is handled by Lemon Squeezy, which acts as the seller of record. It collects your name, email, country and payment details to process your order, and shows its own privacy policy at checkout. We receive only the order information needed to deliver your download and provide support, such as your email address.</p>
+    <p>If you pay with crypto, the transaction is recorded on a public blockchain, and we receive the transaction details and email address you send us to deliver the guide.</p>
     <h3>Third-party services</h3>
     <p>This page loads fonts from Google Fonts, which may receive your IP address when the page opens. The videos on this page are hosted on this website.</p>
     <h3>Your rights</h3>
@@ -249,10 +278,50 @@ footer p{max-width:80ch}
   </div>
 </footer>
 
+
+<dialog class="modal" id="cryptoModal" aria-labelledby="cm-title">
+  <button class="x" type="button" data-close aria-label="Close">&times;</button>
+  <h3 id="cm-title">Pay with Crypto (USDT)</h3>
+  <p class="sub">AURA SOMA — Week 1: Spine Decompression. Send exactly <strong>12 USDT</strong>.</p>
+
+  <div class="addr-label">USDT wallet address (TRON network, TRC20)</div>
+  <div class="addr" id="walletAddr">TDxB7VGrk8V7wUqMq3XxSXbAuDfnkYferX</div>
+  <button class="btn" type="button" id="copyBtn">Copy Address</button>
+
+  <div class="warn"><strong>Network: TRON (TRC20) only.</strong> Do not send on any other network (Ethereum, BNB Chain, Solana or others). Funds sent on the wrong network are lost and cannot be recovered. Crypto transfers are final.</div>
+
+  <ol>
+    <li>Send <b>12 USDT</b> on the <b>TRON (TRC20)</b> network to the address above.</li>
+    <li>Email the <b>transaction hash or a screenshot</b> to <b><a href="mailto:vboronylo@gmail.com" style="color:var(--gold-hi)">vboronylo@gmail.com</a></b>, from the email address where you want to receive the guide.</li>
+    <li>Your guide will be sent to your email <b>within 24 hours</b>. Delivery is manual, not instant.</li>
+  </ol>
+  <p class="tiny">Network fees are paid by the sender. Please check the first and last characters of the address before sending.</p>
+</dialog>
+
 <script>
   // PASTE YOUR GUMROAD OR LEMON SQUEEZY CHECKOUT LINK HERE (one place for all buttons)
   var BUY_URL = "#";
   document.querySelectorAll("[data-buy]").forEach(function(a){ a.href = BUY_URL; });
+  var dlg = document.getElementById("cryptoModal");
+  document.querySelectorAll("[data-crypto]").forEach(function(b){
+    b.addEventListener("click", function(){ if (dlg.showModal) { dlg.showModal(); } else { dlg.setAttribute("open",""); } });
+  });
+  dlg.querySelector("[data-close]").addEventListener("click", function(){ dlg.close(); });
+  dlg.addEventListener("click", function(e){ if (e.target === dlg) { dlg.close(); } });
+  var copyBtn = document.getElementById("copyBtn");
+  copyBtn.addEventListener("click", function(){
+    var t = document.getElementById("walletAddr").textContent.trim();
+    function done(){ copyBtn.textContent = "Copied"; setTimeout(function(){ copyBtn.textContent = "Copy Address"; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function(){ fallback(t); });
+    } else { fallback(t); }
+    function fallback(txt){
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("walletAddr"));
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      try { document.execCommand("copy"); done(); } catch(e) { copyBtn.textContent = "Select and copy manually"; }
+    }
+  });
+
 </script>
 </body>
 </html>
