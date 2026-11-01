@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Sparkles, Phone, MapPin, Music } from 'lucide-react';
+import { Play, Sparkles, Phone, MapPin, Music, Mail } from 'lucide-react';
 import { CinematicTake } from '../types';
 import { KANIV_DOJO_INFO } from '../data/cinematicTakes';
 import { soundEngine } from '../utils/soundEngine';
@@ -92,6 +92,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <Sparkles className="w-4 h-4 text-[#e0a85c]" />
             <span>{t.hero.btnMokuso}</span>
           </button>
+
+          <a
+            href="mailto:contact@aikido-kaniv.com.ua"
+            className="flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold bg-[#221a12] border border-[#c98a3c]/60 text-[#e0a85c] hover:bg-[#302418] transition-colors shadow-lg"
+          >
+            <Mail className="w-4 h-4" />
+            <span>{language === 'en' ? 'Contact me' : 'Зв’язатися зі мною'}</span>
+          </a>
 
           <button
             onClick={() => {
