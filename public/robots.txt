@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Google Search Sitemap
-Sitemap: https://aiki-kaniv-cinematic-slow-motion-dojo.ai.studio/sitemap.xml
+Sitemap: https://aikido-kaniv.com.ua/sitemap.xml
