@@ -199,7 +199,7 @@ footer p{max-width:80ch}
 </section>
 
 <!-- 4. PRICE + BUY -->
-<section class="buy">
+<section class="buy" id="pricing">
   <div class="wrap">
     <h2>One price. Seven days.</h2>
     <p>AURA SOMA — Week 1: Spine Decompression. Instant PDF download after checkout.</p>
@@ -229,7 +229,7 @@ footer p{max-width:80ch}
     </details>
     <details>
       <summary>Can I get a refund?</summary>
-      <p>Yes. If it is not right for you, email us within 14 days of purchase for a full refund. See the <a href="#refund" style="color:var(--gold-hi)">refund policy</a> for details.</p>
+      <p>Yes. If it is not right for you, email us within 14 days of purchase for a full refund. See the <a href="aura-soma-refunds.html" style="color:var(--gold-hi)">refund policy</a> for details.</p>
     </details>
     <details>
       <summary>Is this medical advice?</summary>
@@ -242,9 +242,10 @@ footer p{max-width:80ch}
 <section class="policy" id="refund">
   <div class="wrap">
     <h2>Refund policy</h2>
+    <p><a href="aura-soma-refunds.html">Read the full Refund Policy</a>.</p>
     <p>If AURA SOMA — Week 1: Spine Decompression is not right for you, email us within 14 days of your purchase and we will refund you in full. No questions asked.</p>
-    <p>This is a digital download, so refunds are not available after 14 days. Payments and refunds are processed by our payment provider, Lemon Squeezy, and the refund returns to your original payment method.</p>
-    <p>Crypto payments (USDT): email us within 14 days and we will arrange a refund in USDT to the address you send from, minus the network fee. Transfers sent on the wrong network cannot be recovered.</p>
+    <p>This full-refund policy applies even after downloading the PDF. After 14 days, your mandatory rights for faulty, undelivered or misdescribed digital content remain unaffected. Payments and refunds are processed by Paddle, our authorized reseller and merchant of record, and the refund returns to your original payment method.</p>
+    <p>Crypto payments (USDT): email us within 14 days and we will arrange a full 12 USDT refund after confirming your return address. Original sending network fees are not part of the guide price. Transfers sent on the wrong network cannot be recovered.</p>
     <p>To request a refund, write to <a href="mailto:vboronylo@gmail.com">vboronylo@gmail.com</a> and include the email address you used at checkout.</p>
   </div>
 </section>
@@ -252,11 +253,12 @@ footer p{max-width:80ch}
 <section class="policy" id="privacy">
   <div class="wrap">
     <h2>Privacy policy</h2>
-    <p>Last updated: October 15, 2026.</p>
+    <p><a href="aura-soma-privacy.html">Read the full Privacy Policy</a>.</p>
+    <p>Last updated: November 14, 2026.</p>
     <h3>What this website collects</h3>
-    <p>This website does not have accounts or forms and does not collect your personal information itself. We do not sell your data.</p>
+    <p>This website does not have accounts or forms. We use customer email and order information for PDF delivery, support and refunds. Hosting services may process technical request logs to serve and secure the website. We do not sell your data.</p>
     <h3>When you buy</h3>
-    <p>Checkout is handled by Lemon Squeezy, which acts as the seller of record. It collects your name, email, country and payment details to process your order, and shows its own privacy policy at checkout. We receive only the order information needed to deliver your download and provide support, such as your email address.</p>
+    <p>Checkout is handled by Paddle, which acts as our authorized reseller and merchant of record. It collects your name, email, country and payment details to process your order, and shows its own privacy policy at checkout. We receive only the order information needed to deliver your download and provide support, such as your email address.</p>
     <p>If you pay with crypto, the transaction is recorded on a public blockchain, and we receive the transaction details and email address you send us to deliver the guide.</p>
     <h3>Third-party services</h3>
     <p>This page loads fonts from Google Fonts, which may receive your IP address when the page opens. The videos on this page are hosted on this website.</p>
@@ -270,8 +272,7 @@ footer p{max-width:80ch}
 <footer>
   <div class="wrap">
     <div class="links">
-      <a href="#refund">Refund policy</a>
-      <a href="#privacy">Privacy policy</a>
+      <a href="aura-soma-terms.html">Terms of Service</a><a href="aura-soma-privacy.html">Privacy Policy</a><a href="aura-soma-refunds.html">Refund Policy</a>
       <a href="mailto:vboronylo@gmail.com">Contact</a>
     </div>
     <p>AURA SOMA | International Somatics. Not medical advice. Consult a qualified professional if you have pain or injury.</p>
@@ -299,7 +300,7 @@ footer p{max-width:80ch}
 </dialog>
 
 <script>
-  // PASTE YOUR GUMROAD OR LEMON SQUEEZY CHECKOUT LINK HERE (one place for all buttons)
+  // Configure your Paddle checkout link here (one place for all buttons)
   var BUY_URL = "#";
   document.querySelectorAll("[data-buy]").forEach(function(a){ a.href = BUY_URL; });
   var dlg = document.getElementById("cryptoModal");
