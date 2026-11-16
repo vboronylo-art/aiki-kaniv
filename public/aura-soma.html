@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AURA SOMA — Week 1: Spine Decompression</title>
-<meta name="description" content="Quiet discipline for broken posture. 7 days. 3 minutes a day. $12.">
+<title>AURA SOMA | Three-Week Somatic Program Hub</title>
+<meta name="description" content="Choose your AURA SOMA week: spine decompression, core stability and pelvic balance, or thoracic mobility and breath expansion. Seven daily sessions per guide. $12 per week.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -128,6 +128,29 @@ footer p{max-width:80ch}
   section{padding:60px 0}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+
+/* Multi-week hub: one page, one selected guide. */
+.week-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:30px 0 32px}
+.week-tab{font:inherit;text-align:left;color:var(--bone);background:#102721;border:1px solid #365147;border-radius:8px;padding:20px;cursor:pointer;box-shadow:0 4px 0 #071611;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;min-width:0}
+.week-tab strong{display:block;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-hi);margin-bottom:9px}
+.week-tab .tab-title{display:block;font-family:var(--serif);font-size:1.3rem;line-height:1.18;min-height:3.6em}
+.week-tab small{display:block;color:#c3c7bf;margin-top:12px;font-size:.82rem}
+.week-tab:hover{background:#183a30;border-color:var(--gold)}
+.week-tab:active{transform:translateY(3px);box-shadow:0 1px 0 #071611}
+.week-tab[aria-selected="true"]{background:#1a3b30;border-color:var(--gold-hi);box-shadow:inset 0 0 0 1px var(--gold),0 4px 0 #071611}
+.week-tab:focus-visible,[role="tabpanel"]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:5px}
+.week-panel h3{font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:12px}
+.week-panel .week-intro{color:var(--ash);margin-bottom:24px}
+.week-kicker{color:var(--gold-hi);font-size:.83rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+ol.week li::before{content:"Day " attr(data-day)}
+.checkout-note{font-size:.9rem;color:var(--ash);margin:16px auto 0;max-width:58ch}
+.btn[aria-disabled="true"]{opacity:.52;cursor:not-allowed;background:#243b31;color:var(--bone);border-color:#627063}
+button:disabled{cursor:not-allowed}
+.week-panel.is-updating{animation:week-reveal .24s ease-out}
+@keyframes week-reveal{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){.week-tabs{grid-template-columns:1fr;gap:10px}.week-tab{padding:16px 18px}.week-tab .tab-title{min-height:0;font-size:1.3rem}.week-tab small{margin-top:8px}.week-tab strong{margin-bottom:5px}.buy .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.week-tab{transition:none}.week-panel.is-updating{animation:none}}
+
 </style>
 </head>
 <body>
@@ -142,12 +165,12 @@ footer p{max-width:80ch}
   <div class="hero" id="top">
     <div>
       <h1>Your spine is the asset. Protect it.</h1>
-      <p class="lead">AURA SOMA — Week 1: Spine Decompression. Seven days, three minutes a day of slow, deliberate movement for people who sit for a living.</p>
+      <p class="lead">Three weeks of quiet discipline. Choose a seven-day guide, with three minutes a day of slow, deliberate movement for people who sit for a living.</p>
       <div class="cta-row">
-        <a class="btn" data-buy href="#">Get Week 1, $12</a>
+        <a class="btn" href="#program">Explore the weekly guides</a>
         <button class="btn ghost" type="button" data-crypto>Pay with Crypto (USDT)</button>
       </div>
-      <p class="fine">Instant PDF download. Works on your phone.</p>
+      <p class="fine">$12 per weekly PDF guide. Works on your phone.</p>
     </div>
 
     <!-- HERO VIDEO: replace this block with the video tag below (9:16) -->
@@ -169,45 +192,56 @@ footer p{max-width:80ch}
     <div>
       <h2>Try Day 3 before you pay.</h2>
       <p>Cat-Dragon Flow sends a slow wave through the whole spine, one vertebra at a time. No equipment, three minutes. Watch it, do it, and decide for yourself.</p>
-      <a class="btn ghost" data-buy href="#">Get Week 1, $12</a>
+      <a class="btn ghost" href="#program">Choose your week, $12 each</a>
     </div>
   </div>
 </section>
 
-<!-- 3. WHAT'S INSIDE -->
-<section>
+<!-- 3. MULTI-WEEK PROGRAM HUB -->
+<section id="program">
   <div class="wrap">
-    <h2>What is inside.</h2>
-    <p>Seven short sessions drawn from aikido, qigong and somatic yoga. Each one fits between meetings.</p>
-    <div class="facts">
-      <div><strong>7</strong><span>days, one session each</span></div>
-      <div><strong>3</strong><span>minutes a day</span></div>
-      <div><strong>0</strong><span>equipment needed</span></div>
+    <h2>Find your next three minutes.</h2>
+    <p>Begin with Week 1, then build on it at your own pace. Each weekly PDF guide is a separate $12 purchase.</p>
+    <div class="week-tabs" role="tablist" aria-label="Choose your AURA SOMA week">
+      <button type="button" class="week-tab" role="tab" id="week-tab-1" aria-controls="week-panel" aria-selected="true" tabindex="0" data-week="1"><strong>Week 1</strong><span class="tab-title">Spine Decompression</span><small>Days 1-7 · $12</small></button>
+      <button type="button" class="week-tab" role="tab" id="week-tab-2" aria-controls="week-panel" aria-selected="false" tabindex="-1" data-week="2"><strong>Week 2</strong><span class="tab-title">Core Stability &amp; Pelvic Balance</span><small>Days 8-14 · $12</small></button>
+      <button type="button" class="week-tab" role="tab" id="week-tab-3" aria-controls="week-panel" aria-selected="false" tabindex="-1" data-week="3"><strong>Week 3</strong><span class="tab-title">Thoracic Mobility &amp; Breath Expansion</span><small>Days 15-21 · $12</small></button>
     </div>
-    <h3 style="margin-bottom:14px">Week 1</h3>
-    <ol class="week">
-      <li><div><b>The Hanging Blade</b><span>Let the lower back lengthen under your own weight.</span></div></li>
-      <li><div><b>Axis Rotation</b><span>Rooted spiral that frees the mid-spine and chest.</span></div></li>
-      <li><div><b>Cat-Dragon Flow</b><span>A slow wave through the spine, one vertebra at a time.</span></div></li>
-      <li><div><b>Wall Traction</b><span>Open the upper back and shoulders against the wall.</span></div></li>
-      <li><div><b>Seated Cobra</b><span>Reset your posture at the desk in ninety seconds.</span></div></li>
-      <li><div><b>Sacrum Release</b><span>Release the base of the spine and the hips.</span></div></li>
-      <li><div><b>The Grounded Tree</b><span>Stack the spine in one vertical line and keep it.</span></div></li>
-    </ol>
-    <p class="more">You get a 10-page PDF guide with step-by-step instructions, breathing and exact timing for every day.</p>
+    <div class="week-panel" id="week-panel" role="tabpanel" aria-labelledby="week-tab-1" tabindex="0">
+      <p class="week-kicker" id="week-range">Week 1 · Days 1-7</p>
+      <h3 id="week-title">Spine Decompression</h3>
+      <p class="week-intro" id="week-description">Begin with slow, deliberate movement for the spine. Explore a comfortable fold, gentle rotations, a spinal wave, and supported desk resets.</p>
+      <div class="facts">
+        <div><strong>7</strong><span>daily sessions per guide</span></div>
+        <div><strong>3</strong><span>minutes a day</span></div>
+        <div><strong>$12</strong><span>one-time price per week</span></div>
+      </div>
+      <ol class="week" id="week-sessions">
+        <li data-day="1"><div><b>The Hanging Blade</b><span>A comfortable forward fold with soft knees and an easy return.</span></div></li>
+        <li data-day="2"><div><b>Axis Rotation</b><span>Small chest-led turns over grounded feet.</span></div></li>
+        <li data-day="3"><div><b>Cat-Dragon Flow</b><span>Explore a slow, comfortable wave through the spine.</span></div></li>
+        <li data-day="4"><div><b>Wall Traction</b><span>Supported movement for the upper back and shoulders.</span></div></li>
+        <li data-day="5"><div><b>Seated Cobra</b><span>A modest chest opening at your desk.</span></div></li>
+        <li data-day="6"><div><b>Sacrum Release</b><span>Small pelvic tilts and knee sways, followed by rest.</span></div></li>
+        <li data-day="7"><div><b>The Grounded Tree</b><span>Notice your feet and find a comfortable upright stance.</span></div></li>
+      </ol>
+      <p class="more">A 10-page PDF with step-by-step instructions, breathing cues, and timing for every day. Use a stable chair, a wall, and floor space as directed; some practices use a mat or pillow.</p>
+    </div>
   </div>
 </section>
 
 <!-- 4. PRICE + BUY -->
-<section class="buy" id="pricing">
+<section class="buy" id="pricing" aria-labelledby="pricing-title">
   <div class="wrap">
-    <h2>One price. Seven days.</h2>
-    <p>AURA SOMA — Week 1: Spine Decompression. Instant PDF download after checkout.</p>
-    <div class="price">$12<small>One-time payment. Secure checkout.</small></div>
+    <h2 id="pricing-title">Your week. Your quiet reset.</h2>
+    <p id="purchase-description">Week 1: Spine Decompression · Days 1-7</p>
+    <div class="price">$12<small>One-time payment per weekly PDF guide.</small></div>
     <div class="cta-row">
-        <a class="btn" data-buy href="#">Get Week 1, $12</a>
-        <button class="btn ghost" type="button" data-crypto>Pay with Crypto (USDT)</button>
-      </div>
+      <button class="btn" type="button" data-buy data-paddle-price-id="pri_01m7dr32qez1c53p3zcjc3x0fw" aria-describedby="checkout-note">$12 · Get Instant PDF Access</button>
+      <button class="btn ghost" type="button" data-crypto>Pay with Crypto (USDT)</button>
+    </div>
+    <p class="checkout-note" id="checkout-note" role="status" aria-live="polite">Selected: Week 1. PDF access follows successful checkout. USDT delivery is manual within 24 hours.</p>
+    <noscript><p class="checkout-note">Turn on JavaScript to switch weeks or open checkout. <a href="mailto:vboronylo@gmail.com">Contact us</a> for help.</p></noscript>
   </div>
 </section>
 
@@ -225,7 +259,7 @@ footer p{max-width:80ch}
     </details>
     <details>
       <summary>How do I get access after paying?</summary>
-      <p>Right after checkout you receive an email with a download link for the PDF guide. Open it on your phone or computer and start Day 1.</p>
+      <p>Right after checkout you receive an email with a download link for the PDF guide. Open it on your phone or computer and start the first day of your selected week.</p>
     </details>
     <details>
       <summary>Can I get a refund?</summary>
@@ -300,9 +334,208 @@ footer p{max-width:80ch}
 </dialog>
 
 <script>
-  // Configure your Paddle checkout link here (one place for all buttons)
-  var BUY_URL = "#";
-  document.querySelectorAll("[data-buy]").forEach(function(a){ a.href = BUY_URL; });
+  // Public client-side token only. Never put a Paddle API key here.
+  // Add the live_ client-side token from Paddle after account/domain approval.
+  var PADDLE_CLIENT_TOKEN = "";
+  // Week 2 / Week 3 priceId values are intentionally blank until configured.
+  var PROGRAM_WEEKS = [
+  {
+    "number": 1,
+    "title": "Spine Decompression",
+    "days": "Days 1-7",
+    "priceId": "pri_01m7dr32qez1c53p3zcjc3x0fw",
+    "description": "Begin with slow, deliberate movement for the spine. Explore a comfortable fold, gentle rotations, a spinal wave, and supported desk resets.",
+    "sessions": [
+      [
+        "The Hanging Blade",
+        "A comfortable forward fold with soft knees and an easy return."
+      ],
+      [
+        "Axis Rotation",
+        "Small chest-led turns over grounded feet."
+      ],
+      [
+        "Cat-Dragon Flow",
+        "Explore a slow, comfortable wave through the spine."
+      ],
+      [
+        "Wall Traction",
+        "Supported movement for the upper back and shoulders."
+      ],
+      [
+        "Seated Cobra",
+        "A modest chest opening at your desk."
+      ],
+      [
+        "Sacrum Release",
+        "Small pelvic tilts and knee sways, followed by rest."
+      ],
+      [
+        "The Grounded Tree",
+        "Notice your feet and find a comfortable upright stance."
+      ]
+    ]
+  },
+  {
+    "number": 2,
+    "title": "Core Stability & Pelvic Balance",
+    "days": "Days 8-14",
+    "priceId": "",
+    "description": "Build on Week 1 with a steady base. Explore gentle core control, a mobile pelvis, and coordinated movement without holding your breath.",
+    "sessions": [
+      [
+        "Dead Bug Breath",
+        "Alternate gentle heel lowers while keeping the lower back quiet."
+      ],
+      [
+        "Bird-Dog Axis",
+        "Reach opposite limbs with a small, controlled range."
+      ],
+      [
+        "Pelvic Clock",
+        "Explore small pelvic circles in both directions."
+      ],
+      [
+        "Bridge Lift",
+        "Lift and lower slowly with your feet grounded."
+      ],
+      [
+        "Deep Squat Release",
+        "Choose a comfortable depth and use a stable support as needed."
+      ],
+      [
+        "Hip Hinge Axis",
+        "Move from the hips with soft knees and a long spine."
+      ],
+      [
+        "The Anchored Axis",
+        "Bring pelvic awareness, breath, and a steady base together."
+      ]
+    ]
+  },
+  {
+    "number": 3,
+    "title": "Thoracic Mobility & Breath Expansion",
+    "days": "Days 15-21",
+    "priceId": "",
+    "description": "Carry your steady base into gentle upper-back movement. Explore side-rib awareness, small chest turns, supported opening, and easy, unforced breathing.",
+    "sessions": [
+      [
+        "The Rib Compass",
+        "Notice side and back ribs with light hand contact and easy breaths."
+      ],
+      [
+        "The Seated Spiral",
+        "Turn the chest gently over a quiet pelvis."
+      ],
+      [
+        "The Side-Rib Arc",
+        "Explore a small supported side bend with both hips grounded."
+      ],
+      [
+        "The Supported Chest Lift",
+        "Lift the breastbone slightly and return with the chin level."
+      ],
+      [
+        "The Shoulder-Blade Fan",
+        "Reach below shoulder height and let the shoulder blades spread."
+      ],
+      [
+        "The Open Book",
+        "Open the top arm gently while side lying with knees stacked."
+      ],
+      [
+        "The Breathing Axis",
+        "Bring grounded feet, rib awareness, chest turns, and a small lift together."
+      ]
+    ]
+  }
+];
+  var selectedWeek = 1;
+  var checkoutReady = false;
+  var checkoutLoading = false;
+  var checkoutNote = document.getElementById("checkout-note");
+  var tabs = Array.from(document.querySelectorAll("[data-week]"));
+  var buyButtons = Array.from(document.querySelectorAll("[data-buy]"));
+  function notice(message) { checkoutNote.textContent = message; }
+  function selectWeek(number) {
+    var week = PROGRAM_WEEKS.find(function(item) { return item.number === number; });
+    if (!week) return;
+    selectedWeek = number;
+    tabs.forEach(function(tab) {
+      var active = Number(tab.dataset.week) === number;
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
+    });
+    var panel = document.getElementById("week-panel");
+    panel.setAttribute("aria-labelledby", "week-tab-" + number);
+    document.getElementById("week-range").textContent = "Week " + number + " · " + week.days;
+    document.getElementById("week-title").textContent = week.title;
+    document.getElementById("week-description").textContent = week.description;
+    var list = document.getElementById("week-sessions");
+    list.replaceChildren();
+    week.sessions.forEach(function(session, index) {
+      var item = document.createElement("li");
+      item.dataset.day = String((number - 1) * 7 + index + 1);
+      var body = document.createElement("div");
+      var title = document.createElement("b"); title.textContent = session[0];
+      var detail = document.createElement("span"); detail.textContent = session[1];
+      body.append(title, detail); item.append(body); list.append(item);
+    });
+    document.getElementById("purchase-description").textContent = "Week " + number + ": " + week.title + " · " + week.days;
+    buyButtons.forEach(function(button) {
+      button.dataset.paddlePriceId = week.priceId;
+      button.setAttribute("aria-label", "$12 - Get instant PDF access to Week " + number + ": " + week.title);
+      button.disabled = !week.priceId;
+      button.setAttribute("aria-disabled", String(!week.priceId));
+    });
+    document.querySelectorAll("[data-crypto]").forEach(function(button) {
+      button.disabled = !week.priceId;
+      button.setAttribute("aria-disabled", String(!week.priceId));
+    });
+    notice(week.priceId ? "Selected: Week " + number + ". PDF access follows successful checkout. USDT delivery is manual within 24 hours." : "Week " + number + " checkout is coming soon. Browse the full seven-day outline here; this week is not available for purchase yet.");
+    panel.classList.remove("is-updating");
+    void panel.offsetWidth;
+    panel.classList.add("is-updating");
+  }
+  tabs.forEach(function(tab, index) {
+    tab.addEventListener("click", function() { selectWeek(Number(tab.dataset.week)); });
+    tab.addEventListener("keydown", function(event) {
+      var next;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % tabs.length;
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index + tabs.length - 1) % tabs.length;
+      if (event.key === "Home") next = 0;
+      if (event.key === "End") next = tabs.length - 1;
+      if (next === undefined) return;
+      event.preventDefault(); tabs[next].focus(); selectWeek(Number(tabs[next].dataset.week));
+    });
+  });
+  function openSelectedCheckout() {
+    // Read the current tab at click time; never reuse a previously selected price.
+    var week = PROGRAM_WEEKS.find(function(item) { return item.number === selectedWeek; });
+    if (!week.priceId) return;
+    if (!/^live_[a-zA-Z0-9]+$/.test(PADDLE_CLIENT_TOKEN)) {
+      notice("Card checkout is being prepared. Please try again later or contact vboronylo@gmail.com for help. You have not been charged."); return;
+    }
+    if (checkoutReady) {
+      try { window.Paddle.Checkout.open({ items: [{ priceId: week.priceId, quantity: 1 }], settings: { displayMode: "overlay", theme: "dark", locale: "en" } }); }
+      catch (error) { notice("Checkout could not open. Please try again or contact vboronylo@gmail.com. You have not been charged."); }
+      return;
+    }
+    if (checkoutLoading) return;
+    checkoutLoading = true; notice("Opening secure checkout...");
+    var sdk = document.createElement("script"); sdk.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
+    sdk.onload = function() {
+      checkoutLoading = false;
+      try { window.Paddle.Initialize({ token: PADDLE_CLIENT_TOKEN }); checkoutReady = true; openSelectedCheckout(); }
+      catch (error) { notice("Checkout is temporarily unavailable. Please contact vboronylo@gmail.com for help."); }
+    };
+    sdk.onerror = function() { checkoutLoading = false; notice("Checkout could not load. Please check your connection and try again."); };
+    document.head.append(sdk);
+  }
+  buyButtons.forEach(function(button) { button.addEventListener("click", openSelectedCheckout); });
+  selectWeek(1);
+
   var dlg = document.getElementById("cryptoModal");
   document.querySelectorAll("[data-crypto]").forEach(function(b){
     b.addEventListener("click", function(){ if (dlg.showModal) { dlg.showModal(); } else { dlg.setAttribute("open",""); } });
