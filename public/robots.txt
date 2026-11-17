@@ -1,6 +1,7 @@
 # Robots.txt for Google Search and web crawlers
 User-agent: *
 Allow: /
+Disallow: /downloads/
 
 # Google Search Sitemap
 Sitemap: https://aikido-kaniv.com.ua/sitemap.xml

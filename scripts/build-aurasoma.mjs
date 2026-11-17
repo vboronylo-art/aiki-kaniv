@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { copyFile, cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 // Separate static output keeps the AURA SOMA hostname focused on digital guides.
@@ -9,6 +9,7 @@ await mkdir(output, { recursive: true });
 
 const files = [
   'aura-soma.html',
+  '_headers',
   'aura-soma-terms.html',
   'aura-soma-privacy.html',
   'aura-soma-refunds.html',
@@ -26,3 +27,7 @@ await writeFile(resolve(output, 'index.html'), landing);
 // Canonical landing URL is the root of this dedicated project.
 await writeFile(resolve(output, '_redirects'), '/aura-soma / 301\n/aura-soma.html / 301\n');
 console.log('AURA SOMA: landing, three legal pages and two videos ready in dist-aurasoma.');
+
+// Keep delivery assets and crawler controls on the checkout hostname as well.
+await cp(resolve(source, 'downloads'), resolve(output, 'downloads'), { recursive: true });
+await writeFile(resolve(output, 'robots.txt'), 'User-agent: *\nAllow: /\nDisallow: /downloads/\n');

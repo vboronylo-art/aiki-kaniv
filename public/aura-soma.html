@@ -148,6 +148,8 @@ ol.week li::before{content:"Day " attr(data-day)}
 .checkout-success[hidden]{display:none}
 .checkout-success h3{margin:0 0 12px;color:var(--gold-hi)}
 .checkout-success p{margin:10px 0;overflow-wrap:anywhere}
+.checkout-downloads{display:grid;gap:12px;margin:18px 0}
+.checkout-downloads .btn{display:block;text-align:center;white-space:normal}
 .btn[aria-disabled="true"]{opacity:.52;cursor:not-allowed;background:#243b31;color:var(--bone);border-color:#627063}
 button:disabled{cursor:not-allowed}
 .week-panel.is-updating{animation:week-reveal .24s ease-out}
@@ -248,7 +250,8 @@ button:disabled{cursor:not-allowed}
     <div class="checkout-success" id="checkout-success" role="status" aria-live="polite" hidden>
       <h3 id="checkout-success-title" tabindex="-1">Order confirmed</h3>
       <p id="checkout-success-message"></p>
-      <p>For PDF delivery, check the email address used at checkout for your guide's download link, including your spam folder. If it has not arrived, contact <a href="mailto:vboronylo@gmail.com">vboronylo@gmail.com</a> with your order reference.</p>
+      <div class="checkout-downloads" id="checkout-downloads"></div>
+      <p id="checkout-download-help">Your download starts automatically. If your browser blocks it, use the button above. Need an email backup? Contact <a href="mailto:vboronylo@gmail.com">vboronylo@gmail.com</a> with your order reference and purchased week.</p>
       <p id="checkout-order-reference" hidden></p>
     </div>
     <noscript><p class="checkout-note">Turn on JavaScript to switch weeks or open checkout. <a href="mailto:vboronylo@gmail.com">Contact us</a> for help.</p></noscript>
@@ -269,7 +272,7 @@ button:disabled{cursor:not-allowed}
     </details>
     <details>
       <summary>How do I get access after paying?</summary>
-      <p>Right after checkout you receive an email with a download link for the PDF guide. Open it on your phone or computer and start the first day of your selected week.</p>
+      <p>Immediately after successful Paddle checkout, a “Download Your PDF Guide Now” button appears on this page in the Order confirmed panel, and your PDF download starts automatically. If your browser blocks the automatic download, use the button. For an email backup, contact vboronylo@gmail.com with your order reference and purchased week. Crypto orders are delivered manually by email within 24 hours after payment confirmation.</p>
     </details>
     <details>
       <summary>Can I get a refund?</summary>
@@ -350,6 +353,8 @@ button:disabled{cursor:not-allowed}
   var PROGRAM_WEEKS = [
   {
     "number": 1,
+    "downloadUrl": "/downloads/guide-c6cd45a857c5ef7e47cfb880c6f794bece0698a9602af2a5.pdf",
+    "downloadName": "AURA-SOMA-Week-1-Guide.pdf",
     "title": "Spine Decompression",
     "days": "Days 1-7",
     "priceId": "pri_01m7dr32qez1c53p3zcjc3x0fw",
@@ -387,6 +392,8 @@ button:disabled{cursor:not-allowed}
   },
   {
     "number": 2,
+    "downloadUrl": "/downloads/guide-8ef33f76b536cf1dcf2a55fd7121d48196e701dbac6f373a.pdf",
+    "downloadName": "AURA-SOMA-Week-2-Guide.pdf",
     "title": "Core Stability & Pelvic Balance",
     "days": "Days 8-14",
     "priceId": "pri_01m7n9h9p06gv7f8q6w92n6jmp",
@@ -424,6 +431,8 @@ button:disabled{cursor:not-allowed}
   },
   {
     "number": 3,
+    "downloadUrl": "/downloads/guide-8d8e4e6ac91818f7a955e677794384d110ff77b165dbbbe8.pdf",
+    "downloadName": "AURA-SOMA-Week-3-Guide.pdf",
     "title": "Thoracic Mobility & Breath Expansion",
     "days": "Days 15-21",
     "priceId": "pri_01m7n9m9869y4q6zp3j4r6vtk3",
@@ -467,6 +476,7 @@ button:disabled{cursor:not-allowed}
   var checkoutOpen = false;
   var checkoutCompleted = false;
   var activeCheckoutWeek = null;
+  var automaticDownloads = new Set();
   var checkoutNote = document.getElementById("checkout-note");
   var tabs = Array.from(document.querySelectorAll("[data-week]"));
   var buyButtons = Array.from(document.querySelectorAll("[data-buy]"));
@@ -535,21 +545,39 @@ button:disabled{cursor:not-allowed}
     if (event.name === "checkout.completed") {
       var data = event.data || {};
       var items = Array.isArray(data.items) ? data.items : [];
-      var orderedWeek = PROGRAM_WEEKS.find(function(week) {
-        return items.some(function(item) { return item.price_id === week.priceId; });
-      }) || activeCheckoutWeek;
-      if (!orderedWeek) return;
+      // Deliver only prices present in Paddle's completed checkout, never the selected tab.
+      var orderedWeeks = PROGRAM_WEEKS.filter(function(week) {
+        return items.some(function(item) { return item && item.price_id === week.priceId; });
+      });
       checkoutCompleted = true;
       var success = document.getElementById("checkout-success");
-      document.getElementById("checkout-success-message").textContent = "Thank you. Your order for Week " + orderedWeek.number + ": " + orderedWeek.title + " is confirmed.";
+      var downloads = document.getElementById("checkout-downloads");
+      downloads.replaceChildren();
+      document.getElementById("checkout-success-message").textContent = orderedWeeks.length
+        ? "Thank you. Your order for " + orderedWeeks.map(function(week) { return "Week " + week.number + ": " + week.title; }).join("; ") + " is confirmed."
+        : "Thank you. Your order is confirmed. We could not identify the purchased guide; please contact support with your order reference.";
       var reference = document.getElementById("checkout-order-reference");
       reference.textContent = data.transaction_id ? "Order reference: " + data.transaction_id : "";
       reference.hidden = !data.transaction_id;
+      document.getElementById("checkout-download-help").hidden = !orderedWeeks.length;
       success.hidden = false;
-      notice("Order confirmed. Please check your checkout email for PDF delivery details.");
+      orderedWeeks.forEach(function(week) {
+        var link = document.createElement("a");
+        link.className = "btn";
+        link.href = week.downloadUrl;
+        link.download = week.downloadName;
+        link.textContent = orderedWeeks.length === 1 ? "Download Your PDF Guide Now" : "Download Your PDF Guide Now — Week " + week.number;
+        link.setAttribute("aria-label", "Download Your PDF Guide Now: Week " + week.number + ": " + week.title);
+        downloads.append(link);
+        var key = (data.transaction_id || data.id || "current-checkout") + ":" + week.priceId;
+        if (!automaticDownloads.has(key)) {
+          automaticDownloads.add(key);
+          try { link.click(); } catch (error) { /* The visible link remains available. */ }
+        }
+      });
+      notice(orderedWeeks.length ? "Order confirmed. Your PDF is ready to download below." : "Order confirmed. Please contact vboronylo@gmail.com for your PDF.");
       document.getElementById("checkout-success-title").focus();
       success.scrollIntoView({ behavior: "smooth", block: "center" });
-      // UI confirmation only. PDF fulfillment must be handled by the order-delivery service.
     }
     if (event.name === "checkout.closed") {
       checkoutOpen = false;
