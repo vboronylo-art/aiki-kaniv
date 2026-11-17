@@ -144,6 +144,10 @@ footer p{max-width:80ch}
 .week-kicker{color:var(--gold-hi);font-size:.83rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
 ol.week li::before{content:"Day " attr(data-day)}
 .checkout-note{font-size:.9rem;color:var(--ash);margin:16px auto 0;max-width:58ch}
+.checkout-success{max-width:640px;margin:24px auto 0;padding:24px;border:1px solid var(--gold);border-radius:12px;text-align:left}
+.checkout-success[hidden]{display:none}
+.checkout-success h3{margin:0 0 12px;color:var(--gold-hi)}
+.checkout-success p{margin:10px 0;overflow-wrap:anywhere}
 .btn[aria-disabled="true"]{opacity:.52;cursor:not-allowed;background:#243b31;color:var(--bone);border-color:#627063}
 button:disabled{cursor:not-allowed}
 .week-panel.is-updating{animation:week-reveal .24s ease-out}
@@ -241,6 +245,12 @@ button:disabled{cursor:not-allowed}
       <button class="btn ghost" type="button" data-crypto>Pay with Crypto (USDT)</button>
     </div>
     <p class="checkout-note" id="checkout-note" role="status" aria-live="polite">Selected: Week 1. PDF access follows successful checkout. USDT delivery is manual within 24 hours.</p>
+    <div class="checkout-success" id="checkout-success" role="status" aria-live="polite" hidden>
+      <h3 id="checkout-success-title" tabindex="-1">Order confirmed</h3>
+      <p id="checkout-success-message"></p>
+      <p>For PDF delivery, check the email address used at checkout for your guide's download link, including your spam folder. If it has not arrived, contact <a href="mailto:vboronylo@gmail.com">vboronylo@gmail.com</a> with your order reference.</p>
+      <p id="checkout-order-reference" hidden></p>
+    </div>
     <noscript><p class="checkout-note">Turn on JavaScript to switch weeks or open checkout. <a href="mailto:vboronylo@gmail.com">Contact us</a> for help.</p></noscript>
   </div>
 </section>
@@ -317,7 +327,7 @@ button:disabled{cursor:not-allowed}
 <dialog class="modal" id="cryptoModal" aria-labelledby="cm-title">
   <button class="x" type="button" data-close aria-label="Close">&times;</button>
   <h3 id="cm-title">Pay with Crypto (USDT)</h3>
-  <p class="sub">AURA SOMA — Week 1: Spine Decompression. Send exactly <strong>12 USDT</strong>.</p>
+  <p class="sub"><span id="crypto-program">AURA SOMA — Week 1: Spine Decompression.</span> Send exactly <strong>12 USDT</strong>.</p>
 
   <div class="addr-label">USDT wallet address (TRON network, TRC20)</div>
   <div class="addr" id="walletAddr">TDxB7VGrk8V7wUqMq3XxSXbAuDfnkYferX</div>
@@ -327,7 +337,7 @@ button:disabled{cursor:not-allowed}
 
   <ol>
     <li>Send <b>12 USDT</b> on the <b>TRON (TRC20)</b> network to the address above.</li>
-    <li>Email the <b>transaction hash or a screenshot</b> to <b><a href="mailto:vboronylo@gmail.com" style="color:var(--gold-hi)">vboronylo@gmail.com</a></b>, from the email address where you want to receive the guide.</li>
+    <li>Email the <b>transaction hash or a screenshot</b> and <b id="crypto-week-label">Week 1: Spine Decompression</b> to <b><a href="mailto:vboronylo@gmail.com" style="color:var(--gold-hi)">vboronylo@gmail.com</a></b>, from the email address where you want to receive the guide.</li>
     <li>Your guide will be sent to your email <b>within 24 hours</b>. Delivery is manual, not instant.</li>
   </ol>
   <p class="tiny">Network fees are paid by the sender. Please check the first and last characters of the address before sending.</p>
@@ -335,9 +345,8 @@ button:disabled{cursor:not-allowed}
 
 <script>
   // Public client-side token only. Never put a Paddle API key here.
-  // Add the live_ client-side token from Paddle after account/domain approval.
-  var PADDLE_CLIENT_TOKEN = "";
-  // Week 2 / Week 3 priceId values are intentionally blank until configured.
+  // Paddle defaults to live mode. Do not select the sandbox environment here.
+  var PADDLE_CLIENT_TOKEN = "live_3699196a883723d4fca7f107a2d";
   var PROGRAM_WEEKS = [
   {
     "number": 1,
@@ -380,7 +389,7 @@ button:disabled{cursor:not-allowed}
     "number": 2,
     "title": "Core Stability & Pelvic Balance",
     "days": "Days 8-14",
-    "priceId": "",
+    "priceId": "pri_01m7n9h9p06gv7f8q6w92n6jmp",
     "description": "Build on Week 1 with a steady base. Explore gentle core control, a mobile pelvis, and coordinated movement without holding your breath.",
     "sessions": [
       [
@@ -417,7 +426,7 @@ button:disabled{cursor:not-allowed}
     "number": 3,
     "title": "Thoracic Mobility & Breath Expansion",
     "days": "Days 15-21",
-    "priceId": "",
+    "priceId": "pri_01m7n9m9869y4q6zp3j4r6vtk3",
     "description": "Carry your steady base into gentle upper-back movement. Explore side-rib awareness, small chest turns, supported opening, and easy, unforced breathing.",
     "sessions": [
       [
@@ -454,6 +463,10 @@ button:disabled{cursor:not-allowed}
   var selectedWeek = 1;
   var checkoutReady = false;
   var checkoutLoading = false;
+  var checkoutPending = false;
+  var checkoutOpen = false;
+  var checkoutCompleted = false;
+  var activeCheckoutWeek = null;
   var checkoutNote = document.getElementById("checkout-note");
   var tabs = Array.from(document.querySelectorAll("[data-week]"));
   var buyButtons = Array.from(document.querySelectorAll("[data-buy]"));
@@ -483,8 +496,11 @@ button:disabled{cursor:not-allowed}
       body.append(title, detail); item.append(body); list.append(item);
     });
     document.getElementById("purchase-description").textContent = "Week " + number + ": " + week.title + " · " + week.days;
+    document.getElementById("crypto-program").textContent = "AURA SOMA — Week " + number + ": " + week.title + ".";
+    document.getElementById("crypto-week-label").textContent = "Week " + number + ": " + week.title;
     buyButtons.forEach(function(button) {
       button.dataset.paddlePriceId = week.priceId;
+      button.textContent = week.priceId ? "$12 · Get Instant PDF Access" : "Coming soon";
       button.setAttribute("aria-label", "$12 - Get instant PDF access to Week " + number + ": " + week.title);
       button.disabled = !week.priceId;
       button.setAttribute("aria-disabled", String(!week.priceId));
@@ -510,6 +526,40 @@ button:disabled{cursor:not-allowed}
       event.preventDefault(); tabs[next].focus(); selectWeek(Number(tabs[next].dataset.week));
     });
   });
+  function handleCheckoutEvent(event) {
+    if (!event) return;
+    if (event.name === "checkout.error") {
+      checkoutOpen = false;
+      notice("Checkout is temporarily unavailable. Please try again or contact vboronylo@gmail.com for help.");
+    }
+    if (event.name === "checkout.completed") {
+      var data = event.data || {};
+      var items = Array.isArray(data.items) ? data.items : [];
+      var orderedWeek = PROGRAM_WEEKS.find(function(week) {
+        return items.some(function(item) { return item.price_id === week.priceId; });
+      }) || activeCheckoutWeek;
+      if (!orderedWeek) return;
+      checkoutCompleted = true;
+      var success = document.getElementById("checkout-success");
+      document.getElementById("checkout-success-message").textContent = "Thank you. Your order for Week " + orderedWeek.number + ": " + orderedWeek.title + " is confirmed.";
+      var reference = document.getElementById("checkout-order-reference");
+      reference.textContent = data.transaction_id ? "Order reference: " + data.transaction_id : "";
+      reference.hidden = !data.transaction_id;
+      success.hidden = false;
+      notice("Order confirmed. Please check your checkout email for PDF delivery details.");
+      document.getElementById("checkout-success-title").focus();
+      success.scrollIntoView({ behavior: "smooth", block: "center" });
+      // UI confirmation only. PDF fulfillment must be handled by the order-delivery service.
+    }
+    if (event.name === "checkout.closed") {
+      checkoutOpen = false;
+      if (!checkoutCompleted) notice("Checkout closed. You can reopen it whenever you are ready.");
+    }
+    if (event.name === "checkout.error") {
+      checkoutOpen = false;
+      notice("Checkout could not complete. Please try again or contact vboronylo@gmail.com for help.");
+    }
+  }
   function openSelectedCheckout() {
     // Read the current tab at click time; never reuse a previously selected price.
     var week = PROGRAM_WEEKS.find(function(item) { return item.number === selectedWeek; });
@@ -518,23 +568,38 @@ button:disabled{cursor:not-allowed}
       notice("Card checkout is being prepared. Please try again later or contact vboronylo@gmail.com for help. You have not been charged."); return;
     }
     if (checkoutReady) {
-      try { window.Paddle.Checkout.open({ items: [{ priceId: week.priceId, quantity: 1 }], settings: { displayMode: "overlay", theme: "dark", locale: "en" } }); }
-      catch (error) { notice("Checkout could not open. Please try again or contact vboronylo@gmail.com. You have not been charged."); }
+      if (checkoutOpen) return;
+      activeCheckoutWeek = week;
+      checkoutCompleted = false;
+      checkoutOpen = true;
+      try { window.Paddle.Checkout.open({ items: [{ priceId: week.priceId, quantity: 1 }], customData: { guide_week: String(week.number), guide_title: week.title }, settings: { displayMode: "overlay", theme: "dark", locale: "en" } }); }
+      catch (error) { checkoutOpen = false; notice("Checkout could not open. Please try again or contact vboronylo@gmail.com for help."); }
       return;
     }
+    checkoutPending = true;
+    notice("Opening secure checkout...");
+    loadPaddle();
+  }
+  function loadPaddle() {
+    if (checkoutReady) return;
     if (checkoutLoading) return;
-    checkoutLoading = true; notice("Opening secure checkout...");
+    checkoutLoading = true;
     var sdk = document.createElement("script"); sdk.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
     sdk.onload = function() {
       checkoutLoading = false;
-      try { window.Paddle.Initialize({ token: PADDLE_CLIENT_TOKEN }); checkoutReady = true; openSelectedCheckout(); }
-      catch (error) { notice("Checkout is temporarily unavailable. Please contact vboronylo@gmail.com for help."); }
+      try {
+        window.Paddle.Initialize({ token: PADDLE_CLIENT_TOKEN, eventCallback: handleCheckoutEvent });
+        checkoutReady = true;
+        if (checkoutPending) { checkoutPending = false; openSelectedCheckout(); }
+      }
+      catch (error) { checkoutPending = false; notice("Checkout is temporarily unavailable. Please contact vboronylo@gmail.com for help."); }
     };
     sdk.onerror = function() { checkoutLoading = false; notice("Checkout could not load. Please check your connection and try again."); };
     document.head.append(sdk);
   }
   buyButtons.forEach(function(button) { button.addEventListener("click", openSelectedCheckout); });
   selectWeek(1);
+  loadPaddle();
 
   var dlg = document.getElementById("cryptoModal");
   document.querySelectorAll("[data-crypto]").forEach(function(b){
