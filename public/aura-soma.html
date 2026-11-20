@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AURA SOMA | Three-Week Somatic Program Hub</title>
-<meta name="description" content="Choose your AURA SOMA week: spine decompression, core stability and pelvic balance, or thoracic mobility and breath expansion. Seven daily sessions per guide. $12 per week.">
+<title>AURA SOMA | Four-Week Somatic Program Hub | 30 Days</title>
+<meta name="description" content="AURA SOMA is a four-week, 30-day somatic program for desk workers. Practice three minutes a day. $12 per week.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -130,7 +130,7 @@ footer p{max-width:80ch}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 
 /* Multi-week hub: one page, one selected guide. */
-.week-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:30px 0 32px}
+.week-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:30px 0 32px}
 .week-tab{font:inherit;text-align:left;color:var(--bone);background:#102721;border:1px solid #365147;border-radius:8px;padding:20px;cursor:pointer;box-shadow:0 4px 0 #071611;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;min-width:0}
 .week-tab strong{display:block;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-hi);margin-bottom:9px}
 .week-tab .tab-title{display:block;font-family:var(--serif);font-size:1.3rem;line-height:1.18;min-height:3.6em}
@@ -154,6 +154,7 @@ ol.week li::before{content:"Day " attr(data-day)}
 button:disabled{cursor:not-allowed}
 .week-panel.is-updating{animation:week-reveal .24s ease-out}
 @keyframes week-reveal{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:641px) and (max-width:950px){.week-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.week-tabs{grid-template-columns:1fr;gap:10px}.week-tab{padding:16px 18px}.week-tab .tab-title{min-height:0;font-size:1.3rem}.week-tab small{margin-top:8px}.week-tab strong{margin-bottom:5px}.buy .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){.week-tab{transition:none}.week-panel.is-updating{animation:none}}
 
@@ -171,7 +172,7 @@ button:disabled{cursor:not-allowed}
   <div class="hero" id="top">
     <div>
       <h1>Your spine is the asset. Protect it.</h1>
-      <p class="lead">Three weeks of quiet discipline. Choose a seven-day guide, with three minutes a day of slow, deliberate movement for people who sit for a living.</p>
+      <p class="lead">Four weeks, 30 days. Choose your guide and take three minutes a day for slow, deliberate movement at your desk.</p>
       <div class="cta-row">
         <a class="btn" href="#program">Explore the weekly guides</a>
         <button class="btn ghost" type="button" data-crypto>Pay with Crypto (USDT)</button>
@@ -212,6 +213,7 @@ button:disabled{cursor:not-allowed}
       <button type="button" class="week-tab" role="tab" id="week-tab-1" aria-controls="week-panel" aria-selected="true" tabindex="0" data-week="1"><strong>Week 1</strong><span class="tab-title">Spine Decompression</span><small>Days 1-7 · $12</small></button>
       <button type="button" class="week-tab" role="tab" id="week-tab-2" aria-controls="week-panel" aria-selected="false" tabindex="-1" data-week="2"><strong>Week 2</strong><span class="tab-title">Core Stability &amp; Pelvic Balance</span><small>Days 8-14 · $12</small></button>
       <button type="button" class="week-tab" role="tab" id="week-tab-3" aria-controls="week-panel" aria-selected="false" tabindex="-1" data-week="3"><strong>Week 3</strong><span class="tab-title">Thoracic Mobility &amp; Breath Expansion</span><small>Days 15-21 · $12</small></button>
+      <button type="button" class="week-tab" role="tab" id="week-tab-4" aria-controls="week-panel" aria-selected="false" tabindex="-1" data-week="4"><strong>Week 4</strong><span class="tab-title">Neck, Jaw &amp; Nervous System Reset</span><small>Days 22–30 · $12</small></button>
     </div>
     <div class="week-panel" id="week-panel" role="tabpanel" aria-labelledby="week-tab-1" tabindex="0">
       <p class="week-kicker" id="week-range">Week 1 · Days 1-7</p>
@@ -467,6 +469,54 @@ button:disabled{cursor:not-allowed}
         "Bring grounded feet, rib awareness, chest turns, and a small lift together."
       ]
     ]
+  },
+  {
+    "number": 4,
+    "downloadUrl": "/downloads/guide-d8f99aeea5d0a53d5c41fe18f886330f0628f20deb2f8630.pdf",
+    "downloadName": "AURA-SOMA-Week-4-Guide.pdf",
+    "title": "Neck, Jaw & Nervous System Reset",
+    "days": "Days 22–30",
+    // Paste the live Week 4 Paddle pri_01... value here to enable checkout and delivery.
+    "priceId": "",
+    "description": "Close the 30-day program with nine three-minute desk breaks. Explore gentle neck movement, a softer jaw, supported shoulders, and easy breathing. Finish with a reset you can repeat at your desk.",
+    "sessions": [
+      [
+        "The Desk Neck Reset",
+        "Ground your feet, soften your jaw, and let your shoulders settle on an exhale."
+      ],
+      [
+        "The Quiet Jaw",
+        "Notice clenching and let your teeth part slightly."
+      ],
+      [
+        "The Supported Shoulder Drop",
+        "Rest your forearms on a support and let your shoulders settle."
+      ],
+      [
+        "The Level Look",
+        "Practice small head turns with a pause at center."
+      ],
+      [
+        "The Screen Break",
+        "Rest your gaze beyond the screen and shift between two steady points."
+      ],
+      [
+        "The Easy Exhale",
+        "Notice an ordinary breath and let your exhale take its time."
+      ],
+      [
+        "The Backrest Pause",
+        "Notice the chair against your back and the floor under your feet."
+      ],
+      [
+        "The Shoulder Glide",
+        "Explore small shoulder circles, pausing after each one."
+      ],
+      [
+        "The Three-Minute Reset",
+        "Combine grounded feet, a soft jaw, gentle chest turns, and an easy exhale."
+      ]
+    ]
   }
 ];
   var selectedWeek = 1;
@@ -519,7 +569,7 @@ button:disabled{cursor:not-allowed}
       button.disabled = !week.priceId;
       button.setAttribute("aria-disabled", String(!week.priceId));
     });
-    notice(week.priceId ? "Selected: Week " + number + ". PDF access follows successful checkout. USDT delivery is manual within 24 hours." : "Week " + number + " checkout is coming soon. Browse the full seven-day outline here; this week is not available for purchase yet.");
+    notice(week.priceId ? "Selected: Week " + number + ". PDF access follows successful checkout. USDT delivery is manual within 24 hours." : "Week " + number + " checkout is coming soon. Browse the full session outline here; this week is not available for purchase yet.");
     panel.classList.remove("is-updating");
     void panel.offsetWidth;
     panel.classList.add("is-updating");
@@ -547,7 +597,7 @@ button:disabled{cursor:not-allowed}
       var items = Array.isArray(data.items) ? data.items : [];
       // Deliver only prices present in Paddle's completed checkout, never the selected tab.
       var orderedWeeks = PROGRAM_WEEKS.filter(function(week) {
-        return items.some(function(item) { return item && item.price_id === week.priceId; });
+        return Boolean(week.priceId) && items.some(function(item) { return item && item.price_id === week.priceId; });
       });
       checkoutCompleted = true;
       var success = document.getElementById("checkout-success");
